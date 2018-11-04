@@ -1,0 +1,122 @@
+kind: Deployment
+
+apiVersion: apps/v1
+metadata:
+  name: asterisks-db
+  labels:
+    app: asterisks-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asterisks-db
+  template:
+    metadata:
+      labels:
+        app: asterisks-db
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:11.0-alpine
+        ports:
+        - containerPort: 5432
+---
+kind: Service
+
+apiVersion: v1
+metadata:
+  name: asterisks-db-service
+spec:
+  selector:
+    app: asterisks-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
+---
+kind: Deployment
+
+apiVersion: apps/v1
+metadata:
+  name: asterisks
+  labels:
+    app: asterisks
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: asterisks
+  template:
+    metadata:
+      labels:
+        app: asterisks
+    spec:
+      containers:
+      - name: asterisks
+        image: mustakimali/asterisks
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: asterisks-vol
+          mountPath: /app/App_Data
+        env:
+          - name: "ConnectionStrings__DbServer"
+            value: "Server=asterisks-db-service;Database=Asterisks;User ID=postgres"
+        livenessProbe:
+          httpGet:
+            path: /api/health-check
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+            
+      volumes:
+        - name: asterisks-vol
+          persistentVolumeClaim:
+            claimName: asterisks-vol-claim
+---
+kind: PersistentVolumeClaim
+
+apiVersion: v1
+metadata:
+  name: asterisks-vol-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
+---
+kind: Service
+
+apiVersion: v1
+metadata:
+  name: asterisks-service
+spec:
+  selector:
+    app: asterisks
+  ports:
+  - protocol: TCP
+    port: 80
+    nodePort: 30080
+  type: NodePort
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: asterisks-hpa
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: asterisks
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
