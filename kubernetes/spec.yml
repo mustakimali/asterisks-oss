@@ -120,3 +120,15 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
+
+# To remember
+#
+# k = kubectl
+# k create -f spec.yml
+# k delete -f spec.yml
+# k get po => get all pod
+# Shell in Alpine
+#   k exec -it <pod_name> -- /bin/ash
+#
+# Need metrics servers up and running to get the autoscaller working
+# k create -f https://raw.githubusercontent.com/kubernetes/kops/master/addons/metrics-server/v1.8.x.yaml
