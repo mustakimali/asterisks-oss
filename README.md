@@ -1,7 +1,7 @@
 # ✳ Asterisks
-🔐 Working on End to end encrypted and minimal social media. Will be open source soon when it's ready for primetime.
+🔐 Working on End to end encrypted and minimal social media. Currently the source code is in a private repo and will be open source soon when it's ready for primetime.
 
-Every commit is built and pushed [in docker hub](https://hub.docker.com/r/mustakimali/asterisks/) andis also deployed to [Azure app service](https://asterisks.mustak.im).
+Every commit is built and pushed [in docker hub](https://hub.docker.com/r/mustakimali/asterisks/) and is also deployed to [Azure app service](https://asterisks.mustak.im).
 
 ## Live demo
 https://asterisks.mustak.im
@@ -14,11 +14,7 @@ Alpha version, you will see lots of diagnostic information on the top-left corne
 kubectl create -f https://raw.githubusercontent.com/mustakimali/asterisks/master/kubernetes/spec.yml
 ```
 
-Wait few moments as it will initialize postgres database and get the app running, to access the app go to
-
-`http://localhost:30080`
-
-You need to create a new account as the database will be empty
+Wait few moments as it will initialize an empty postgres database and get the app running, to access the app go to [http://localhost:30080](http://localhost:30080)
 
 ### Used technologies
 
