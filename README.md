@@ -11,7 +11,7 @@ Alpha version, you will see lots of diagnostic information on the top-left corne
 ## Run in kubernetes
 
 ```bash
-kubectl create -f https://raw.githubusercontent.com/mustakimali/asterisks/master/kubernetes/spec.yml
+kubectl create -f https://raw.githubusercontent.com/mustakimali/asterisks-oss/master/kubernetes/spec.yml
 ```
 
 Wait few moments as it will initialize an empty postgres database and get the app running, to access the app go to [http://localhost:30080](http://localhost:30080)
