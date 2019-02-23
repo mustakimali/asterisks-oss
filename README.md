@@ -4,7 +4,7 @@
 Every commit is built and pushed [in docker hub](https://hub.docker.com/r/mustakimali/asterisks/) and is also deployed to [Azure app service](https://asterisks.mustak.im).
 
 ## Live demo
-https://asterisks.mustak.im
+https://asterisks.azurewebsites.net
 
 Alpha version, you will see lots of diagnostic information on the top-left corner.
 
@@ -18,7 +18,7 @@ Wait few moments as it will initialize an empty postgres database and get the ap
 
 ### Used technologies
 
-* ASP.NET Core 2 - [For REST API](https://asterisks.mustak.im/swagger)
+* ASP.NET Core 2 - [For REST API](https://asterisks.azurewebsites.net/swagger)
 * PostgreSQL - Database
 * Vue.js + Typescript - Frontend SPA
 * Secure line, to allow adding friends in my network - provided by another project of mine [just-an-email](https://github.com/mustakimali/just-an-email)
