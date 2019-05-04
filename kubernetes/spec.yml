@@ -51,6 +51,10 @@ spec:
       labels:
         app: asterisks
     spec:
+      volumes:
+      - name: asterisks-vol
+        emptyDir: {}
+
       containers:
       - name: asterisks
         image: mustakimali/asterisks
@@ -75,23 +79,6 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
-            
-      volumes:
-        - name: asterisks-vol
-          persistentVolumeClaim:
-            claimName: asterisks-vol-claim
----
-kind: PersistentVolumeClaim
-
-apiVersion: v1
-metadata:
-  name: asterisks-vol-claim
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 8Gi
 ---
 kind: Service
 
@@ -123,12 +110,6 @@ spec:
 
 # To remember
 #
-# k = kubectl
-# k create -f spec.yml
-# k delete -f spec.yml
-# k get po => get all pod
-# Shell in Alpine
-#   k exec -it <pod_name> -- /bin/ash
 #
 # Need metrics servers up and running to get the autoscaller working
 # k create -f https://raw.githubusercontent.com/kubernetes/kops/master/addons/metrics-server/v1.8.x.yaml
