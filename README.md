@@ -1,10 +1,10 @@
 # ✳ Asterisks
 🔐 Working on End to end encrypted and minimal social media. Currently the source code is in a private repo and will be open source soon when it's ready for primetime.
 
-Every commit is built and pushed [in docker hub](https://hub.docker.com/r/mustakimali/asterisks/) and is also deployed to [Azure app service](https://asterisks.mustak.im).
+Every commit is built and pushed [in docker hub](https://hub.docker.com/r/mustakimali/asterisks/) and is also deployed to [Azure app service](https://asterisks.mustakim.dev/).
 
 ## Live demo
-https://asterisks.azurewebsites.net
+https://asterisks.mustakim.dev/
 
 Alpha version, you will see lots of diagnostic information on the top-left corner.
 
