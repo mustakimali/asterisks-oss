@@ -18,7 +18,7 @@ Wait few moments as it will initialize an empty postgres database and get the ap
 
 ### Used technologies
 
-* ASP.NET Core 2 - [For REST API](https://asterisks.azurewebsites.net/swagger)
+* ASP.NET Core 2 - [For REST API](https://asterisks.mustakim.dev/swagger)
 * PostgreSQL - Database
 * Vue.js + Typescript - Frontend SPA
 * Secure line, to allow adding friends in my network - provided by another project of mine [just-an-email](https://github.com/mustakimali/just-an-email)
